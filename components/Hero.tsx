@@ -15,9 +15,9 @@ export default function Hero() {
           adoption.
         </p>
         <p className="text-text-secondary mb-8">
-          UC Berkeley &apos;26 · Data Science
+          UC Berkeley &apos;26 · Data Science and Economics
           <br />
-          Anthropic Campus Ambassador · SJF Ventures
+          Anthropic Campus Ambassador · Prev. SJF Ventures, Doordash
         </p>
         <SocialLinks />
       </div>

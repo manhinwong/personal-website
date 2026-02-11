@@ -1,6 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/data";
 
+function loomEmbedUrl(url: string) {
+  const match = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/);
+  if (match?.[1]) return `https://www.loom.com/embed/${match[1]}`;
+  return url;
+}
+
 export default function ProjectCard({ project }: { project: Project }) {
   if (project.featured) {
     return (
@@ -13,6 +19,19 @@ export default function ProjectCard({ project }: { project: Project }) {
           <p className="text-text-secondary leading-relaxed mb-4">
             {project.description}
           </p>
+        )}
+        {project.demoVideoUrl && (
+          <div className="mb-4">
+            <div className="w-full aspect-video rounded-lg overflow-hidden border border-border bg-bg-alt">
+              <iframe
+                src={loomEmbedUrl(project.demoVideoUrl)}
+                title={`${project.title} demo video`}
+                className="w-full h-full"
+                allow="autoplay; encrypted-media; fullscreen; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
         )}
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tech.map((t) => (

@@ -4,6 +4,7 @@ export type Project = {
   description?: string;
   tech: string[];
   links: { label: string; url: string }[];
+  demoVideoUrl?: string;
   featured: boolean;
 };
 
@@ -26,18 +27,32 @@ export const projects: Project[] = [
     tagline: "A platform for students to share what they've built with Claude.",
     description:
       "Ambassadors needed a central place to highlight student projects — demos were scattered across Slack threads and forgotten Google Docs. I built a showcase platform where students submit builds, browse what others have made, and get inspired to start their own. Shipped it to the ambassador community and received immediate adoption.",
-    tech: ["TypeScript", "Next.js", "Vercel"],
+    tech: ["TypeScript", "Next.js", "Vercel", "Upstash", "Claude Code"],
+    demoVideoUrl: "https://www.loom.com/share/2a3b92969376446b927bda003a001068",
     links: [
       { label: "GitHub", url: "https://github.com/manhinwong/claude-showcase" },
     ],
     featured: true,
   },
   {
+    title: "Postcards",
+    tagline: "A tool for sending personalized, storybook-style postcards to friends. ",
+    description:
+      'Maintaining close friendships after college is hard — everyone gets busy and "we should catch up" rarely turns into anything real. I wanted a way to reach out that felt intentional and personal, not just another DM. I built a digital postcard generator where each recipient gets a unique link to a storybook-style experience with pages for life updates, thoughtful questions, and shared memories. Shipped it to a close friend and it sparked a real conversation for the first time in months.',
+    tech: ["JavaScript", "Next.js", "Vercel", "Claude Code", "Upstash"],
+    demoVideoUrl: "https://www.loom.com/share/806fb18140194bb2997cd51289c8c422",
+    links: [
+      { label: "GitHub", url: "https://github.com/manhinwong/postcards-demo" },
+      { label: "Live Demo", url: "https://postcards-demo.vercel.app/" },
+    ],
+    featured: true,
+  },
+  {
     title: "AI Toolkit for Venture Capital",
-    tagline: "AI-powered deal sourcing and portfolio tools for non-technical investors.",
+    tagline: "AI-powered deal sourcing and workflow automation for investors.",
     description:
       "During my internship at SJF Ventures, no one on the team had an engineering background, and off-the-shelf AI tools didn't fit their workflows. I built a suite of internal tools: a Salesforce automation for logging portfolio updates, an intelligent search engine for deal sourcing, and research assistants that could surface relevant market data. Every tool was designed for people who communicate in insights, not code.",
-    tech: ["Python", "JavaScript", "Salesforce API", "Claude API"],
+    tech: ["Python", "JavaScript", "Salesforce API", "OpenAI Deep Research API", "Langchain", "Zapier"],
     links: [
       {
         label: "Case Study",
@@ -50,24 +65,31 @@ export const projects: Project[] = [
     title: "Personal Finance Assistant",
     tagline: "A conversational interface for understanding your money.",
     description:
-      "Integrated the Plaid API to let users connect their bank accounts and ask natural-language questions about their spending, savings, and trends. The goal was to make financial data feel approachable — something you talk to, not a spreadsheet you stare at.",
-    tech: ["Next.js", "Plaid API", "Claude API", "Supabase"],
-    links: [],
+      "Integrated the Plaid API (sandbox, not production) to let users connect their bank accounts and ask natural-language questions about their spending, savings, and trends. The goal was to make financial data feel approachable — something you talk to, not a spreadsheet you stare at.",
+    tech: ["Next.js", "Plaid API", "Claude Code", "Vercel"],
+    links: [
+      { label: "Live Demo", url: "https://live-budget-tracker.vercel.app/" },
+    ],
     featured: true,
   },
   {
-    title: "Postcards",
-    tagline: "A web app for creating personalized digital postcards with photos and messages.",
-    tech: ["JavaScript", "Next.js"],
-    links: [
-      { label: "GitHub", url: "https://github.com/manhinwong/postcards-demo" },
-    ],
+    title: "StudentPass",
+    tagline: "Student discounts, simplified.",
+    tech: ["Vercel", "Claude Code", "Claude Skills"],
+    links: [{ label: "Live Demo", url: "https://www.studentpass.live/" }],
+    featured: false,
+  },
+  {
+    title: "Knowledge Engine",
+    tagline: "A dashboard for exploring a knowledge graph.",
+    tech: ["Claude API", "Claude SDK", "Vercel"],
+    links: [{ label: "Live Demo", url: "https://knowledge-engine.fly.dev/dashboard" }],
     featured: false,
   },
   {
     title: "BubuPass",
-    tagline: "Maps and games for finding Labubus on Snackpass.",
-    tech: ["TypeScript"],
+    tagline: "Maps and games on Snackpass with Labubus.",
+    tech: ["TypeScript", "Claude Code", "Figma Make"],
     links: [
       { label: "GitHub", url: "https://github.com/manhinwong/bubupass" },
     ],
@@ -76,7 +98,8 @@ export const projects: Project[] = [
   {
     title: "Hydration Reminder",
     tagline: "A simple app that tracks your water intake and nudges you to drink more.",
-    tech: ["JavaScript"],
+    tech: ["JavaScript", "Electron", "Claude Code"
+    ],
     links: [
       {
         label: "GitHub",
@@ -84,7 +107,8 @@ export const projects: Project[] = [
       },
     ],
     featured: false,
-  },
+  }
+  
 ];
 
 export const articles: Article[] = [
