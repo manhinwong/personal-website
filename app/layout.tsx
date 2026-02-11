@@ -22,9 +22,6 @@ export const metadata: Metadata = {
   title: "Marcus Wong — AI Product Builder",
   description:
     "I build AI products that close the gap between capability and adoption. UC Berkeley '26, Anthropic Campus Ambassador.",
-  icons: {
-    icon: "/favicon.png",
-  },
   openGraph: {
     title: "Marcus Wong — AI Product Builder",
     description:
