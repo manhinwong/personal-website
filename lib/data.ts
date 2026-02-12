@@ -23,6 +23,31 @@ export type ApproachItem = {
 
 export const projects: Project[] = [
   {
+    title: "AI Toolkit for Venture Capital",
+    tagline: "AI-powered deal sourcing and workflow automation for investors.",
+    description:
+      "During my internship at SJF Ventures, no one on the team had an engineering background, and off-the-shelf AI tools didn't fit their workflows. I built a suite of internal tools: a Salesforce automation for logging portfolio updates, an intelligent search engine for deal sourcing, and research assistants that could surface relevant market data. I even developed prototypes and recommendations for new AI features for some of our portfolio companies. Every tool was designed for people who communicate in insights, not code.",
+    tech: ["Python", "JavaScript", "Salesforce API", "OpenAI Deep Research API", "Langchain", "Zapier"],
+    links: [
+      {
+        label: "Case Study",
+        url: "https://marcusdubs.substack.com/p/i-vibecoded-my-way-through-my-internship",
+      },
+    ],
+    featured: true,
+  },
+  {
+    title: "ChatCHW - AI Health Assistant for Community Workers",
+    tagline: "Making healthcare information accessible for frontline community health workers.",
+    description:
+      "Built an AI-powered health assistant for community health workers (CHWs) serving underserved populations. The system helps CHWs access medical information, answer patient questions, and navigate healthcare resources in real-time. Designed for users with limited technical literacy and unreliable internet access, prioritizing clarity and offline functionality over feature complexity.",
+    tech: ["Python", "OpenAI API", "Pinecone", "Groq", "React"],
+    links: [
+      { label: "GitHub", url: "https://github.com/mabhi02/ChatCHW" },
+    ],
+    featured: true,
+  },
+  {
     title: "Claude Showcase",
     tagline: "A platform for students to share what they've built with Claude.",
     description:
@@ -48,20 +73,6 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    title: "AI Toolkit for Venture Capital",
-    tagline: "AI-powered deal sourcing and workflow automation for investors.",
-    description:
-      "During my internship at SJF Ventures, no one on the team had an engineering background, and off-the-shelf AI tools didn't fit their workflows. I built a suite of internal tools: a Salesforce automation for logging portfolio updates, an intelligent search engine for deal sourcing, and research assistants that could surface relevant market data. Every tool was designed for people who communicate in insights, not code.",
-    tech: ["Python", "JavaScript", "Salesforce API", "OpenAI Deep Research API", "Langchain", "Zapier"],
-    links: [
-      {
-        label: "Case Study",
-        url: "https://marcusdubs.substack.com/p/i-vibecoded-my-way-through-my-internship",
-      },
-    ],
-    featured: true,
-  },
-  {
     title: "Personal Finance Assistant",
     tagline: "A conversational interface for understanding your money.",
     description:
@@ -70,7 +81,7 @@ export const projects: Project[] = [
     links: [
       { label: "Live Demo", url: "https://live-budget-tracker.vercel.app/" },
     ],
-    featured: true,
+    featured: false,
   },
   {
     title: "StudentPass",

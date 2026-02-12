@@ -17,7 +17,8 @@ export default function About() {
           development and user adoption.
         </p>
         <p>
-          As an Anthropic Campus Ambassador at UC Berkeley, I run the frontline
+          As an Anthropic Campus Ambassador at UC Berkeley, I led a team that drove 10,000+ Claude Pro signups 
+          and built programming reaching 40,000+ students. I ran the frontline
           of how students discover and use Claude — organizing workshops,
           hackathons, and demos for hundreds of students. That work gives me
           pattern recognition most builders don&apos;t have: I see what excites
@@ -29,9 +30,9 @@ export default function About() {
           At SJF Ventures, I built AI tools for investors who had never touched
           a terminal — Salesforce automations, intelligent search engines for
           deal sourcing, and portfolio monitoring systems. I provided similar
-          techincal assistance and advice to its porfolio companies, including
-          developing some prototypes for new AI features. The constraint was
-          always the same: if the person using this can&apos;t understand it in
+          techincal assistance and advice to its porfolio companies in healthcare, 
+          education, and government, including developing some prototypes for new 
+          AI features. The constraint was the same: if the person using this can&apos;t understand it in
           30 seconds, it doesn&apos;t matter how good the code is.
         </p>
         <p>
