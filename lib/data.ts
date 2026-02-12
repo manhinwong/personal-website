@@ -6,6 +6,7 @@ export type Project = {
   links: { label: string; url: string }[];
   demoVideoUrl?: string;
   featured: boolean;
+  caseStudy?: string;
 };
 
 export type Article = {
@@ -46,6 +47,11 @@ export const projects: Project[] = [
       { label: "GitHub", url: "https://github.com/mabhi02/ChatCHW" },
     ],
     featured: true,
+    caseStudy: `My most formative technical experience came through the ChatCHW project under Professor David Levine, where I built a mobile diagnostic tool for Community Health Workers in rural India with fellow researchers. I knew nothing about CHWs, maternal healthcare protocols, or complex app development when I started. But the project demanded I learn quickly.
+
+The work required constant iteration informed by questions I didn't know to ask initially. I spent hours talking to the user research team: How do CHWs want symptom information presented? What's the cognitive load of a multi-page survey versus a chat interface on a 2G connection? I pestered our AI team about their model's training data and output formats so I could design the interface around realistic constraints, not idealized ones. I asked Professor Levine which diagnostic features mattered most when we inevitably had to cut scope.
+
+Midway through development, we realized our carefully designed multi-page survey interface fundamentally didn't work with our small language model's conversational output. Rather than accept the sunk cost of weeks of work, I pushed back on the team's initial impulse to scale it anyway. I asked Professor Levine which diagnostic features actually mattered, the uncomfortable question that forced us to redesign from scratch. It was frustrating to scrap weeks of work, but the revised design we ended up with better served both the CHWs and the technical constraints we faced. That willingness to surface problems early, push back on flawed assumptions, and ask uncomfortable questions became essential to how I approach building AI products.`,
   },
   {
     title: "Claude Showcase",

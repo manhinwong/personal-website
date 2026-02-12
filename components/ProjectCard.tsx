@@ -1,5 +1,9 @@
+"use client";
+
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/data";
+import { useState } from "react";
+import CaseStudyModal from "./CaseStudyModal";
 
 function loomEmbedUrl(url: string) {
   const match = url.match(/loom\.com\/share\/([a-zA-Z0-9]+)/);
@@ -8,6 +12,7 @@ function loomEmbedUrl(url: string) {
 }
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const [isCaseStudyOpen, setIsCaseStudyOpen] = useState(false);
   if (project.featured) {
     return (
       <div className="bg-white border border-border rounded-xl p-6 md:p-8 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
@@ -43,21 +48,37 @@ export default function ProjectCard({ project }: { project: Project }) {
             </span>
           ))}
         </div>
-        {project.links.length > 0 && (
-          <div className="flex gap-4">
-            {project.links.map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
-              >
-                {link.label}
-                <ArrowUpRight size={14} />
-              </a>
-            ))}
-          </div>
+        <div className="flex gap-4 flex-wrap">
+          {project.links.map((link) => (
+            <a
+              key={link.url}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+            >
+              {link.label}
+              <ArrowUpRight size={14} />
+            </a>
+          ))}
+          {project.caseStudy && (
+            <button
+              onClick={() => setIsCaseStudyOpen(true)}
+              className="text-sm text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+            >
+              Case Study
+              <ArrowUpRight size={14} />
+            </button>
+          )}
+        </div>
+
+        {project.caseStudy && (
+          <CaseStudyModal
+            isOpen={isCaseStudyOpen}
+            onClose={() => setIsCaseStudyOpen(false)}
+            title={project.title}
+            content={project.caseStudy}
+          />
         )}
       </div>
     );
