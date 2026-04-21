@@ -16,10 +16,6 @@ export default function Contact() {
         <h2 className="font-display text-3xl md:text-4xl mb-4">
           Let&apos;s talk.
         </h2>
-        <p className="text-text-secondary text-lg mb-2">
-          I&apos;m currently looking for full-time Applied AI and Product roles
-          starting June 2026.
-        </p>
         <a
           href="mailto:marcusmhwong@gmail.com"
           className="text-accent hover:text-accent-hover transition-colors text-lg"
