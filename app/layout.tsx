@@ -21,7 +21,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Marcus Wong — AI Product Builder",
   description:
-    "I build AI products that close the gap between capability and adoption. UC Berkeley '26, Anthropic Campus Ambassador.",
+    "I build AI products that close the gap between capability and adoption. Investor at Llama Ventures, previously at Anthropic and Doordash.",
   openGraph: {
     title: "Marcus Wong — AI Product Builder",
     description:

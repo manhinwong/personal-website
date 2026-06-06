@@ -36,7 +36,14 @@ export default function About() {
           30 seconds, it doesn&apos;t matter how good the code is.
         </p>
         <p>
-          Now I build my own products. I prototype fast, test with real users,
+          Now I&apos;m an investor at Llama Ventures, a $300M+ early-stage fund
+          backing AI-focused founders. I bring a builder&apos;s lens to diligence —
+          prototyping alongside founders, pressure-testing product decisions, and
+          spotting the gap between a model&apos;s capabilities and a real workflow
+          before anyone else does.
+        </p>
+        <p>
+          On the side, I keep building. I prototype fast, test with real users,
           and iterate the same night. Every project below started with a pattern
           I noticed and a question I couldn&apos;t stop thinking about.
         </p>

@@ -17,7 +17,7 @@ export default function Hero() {
         <p className="text-text-secondary mb-8">
           UC Berkeley &apos;26 · Data Science and Economics
           <br />
-          Anthropic Campus Ambassador · Prev. SJF Ventures, Doordash
+          Investor @ Llama Ventures · Previously @ Anthropic, Doordash
         </p>
         <SocialLinks />
       </div>
