@@ -85,7 +85,7 @@ Midway through development, we realized our carefully designed multi-page survey
       "Integrated the Plaid API (sandbox, not production) to let users connect their bank accounts and ask natural-language questions about their spending, savings, and trends. The goal was to make financial data feel approachable — something you talk to, not a spreadsheet you stare at.",
     tech: ["Next.js", "Plaid API", "Claude Code", "Vercel"],
     links: [
-      { label: "Live Demo", url: "https://live-budget-tracker.vercel.app/" },
+      { label: "Live Demo", url: "https://live-budget-tracker.vercel.app/demo" },
     ],
     featured: false,
   },
