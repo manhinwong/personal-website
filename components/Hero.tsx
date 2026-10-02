@@ -20,6 +20,12 @@ export default function Hero() {
           Investor @ Llama Ventures · Previously @ Anthropic, Doordash
         </p>
         <SocialLinks />
+        <a
+          href="/island"
+          className="inline-block mt-6 font-mono text-sm text-accent hover:text-accent-hover transition-colors"
+        >
+          Explore in 3D &rarr;
+        </a>
       </div>
     </section>
   );

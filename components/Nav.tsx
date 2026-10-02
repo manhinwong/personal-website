@@ -7,6 +7,7 @@ const navLinks = [
   { label: "Writing", href: "#writing" },
   { label: "Approach", href: "#approach" },
   { label: "Contact", href: "#contact" },
+  { label: "3D", href: "/island", desktopOnly: true },
 ];
 
 export default function Nav() {
@@ -36,7 +37,9 @@ export default function Nav() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-text-secondary hover:text-text transition-colors"
+              className={`text-sm text-text-secondary hover:text-text transition-colors ${
+                link.desktopOnly ? "hidden sm:inline" : ""
+              }`}
             >
               {link.label}
             </a>

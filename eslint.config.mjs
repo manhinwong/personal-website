@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // The 3D island is plain browser/Node JS with its own validator and build gate.
+    "island/**",
+    "public/island/**",
   ]),
 ]);
 
