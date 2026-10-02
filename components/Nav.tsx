@@ -7,7 +7,7 @@ const navLinks = [
   { label: "Writing", href: "#writing" },
   { label: "Approach", href: "#approach" },
   { label: "Contact", href: "#contact" },
-  { label: "3D", href: "/island", desktopOnly: true },
+  { label: "3D", href: "/", desktopOnly: true },
 ];
 
 export default function Nav() {

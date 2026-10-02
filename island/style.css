@@ -35,6 +35,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; font-family: var(--fon
   box-shadow: 0 6px 24px rgba(199,87,46,0.28); animation: bob 1.6s ease-in-out infinite;
 }
 @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+#splash .classic {
+  margin-top: 18px; font: 500 14px var(--font-body); color: var(--muted);
+  text-decoration: underline; text-underline-offset: 3px;
+}
+#splash .classic:hover { color: var(--accent); }
 #splash .controls { margin-top: 26px; font: 500 12px/1.8 var(--font-mono); color: var(--muted); padding: 0 16px; }
 #splash .controls b { color: var(--text-soft); }
 

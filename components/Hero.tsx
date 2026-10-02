@@ -21,7 +21,7 @@ export default function Hero() {
         </p>
         <SocialLinks />
         <a
-          href="/island"
+          href="/"
           className="inline-block mt-6 font-mono text-sm text-accent hover:text-accent-hover transition-colors"
         >
           Explore in 3D &rarr;
