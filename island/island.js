@@ -392,23 +392,34 @@ LAYOUT.props.filter((p) => p.kind === 'plinth').forEach((p) => {
   world.add(pole);
   const knob = new THREE.Mesh(new THREE.SphereGeometry(0.3, 10, 8), M(0xf7c948));
   knob.position.y = 9.1; world.add(knob);
-  const flagTex = makeTex(512, 340, (ctx, w, h) => {
+  /* headshot on the left in a terracotta ring, name stacked on the right.
+     The photo loads async, so the flag is drawn once without it and then
+     redrawn into the same canvas when it arrives. */
+  const drawFlag = (ctx, w, h, photo) => {
     ctx.fillStyle = '#fafaf8'; ctx.fillRect(0, 0, w, h);
     ctx.strokeStyle = '#c7572e'; ctx.lineWidth = 22; ctx.strokeRect(0, 0, w, h);
-    ctx.fillStyle = '#c7572e'; ctx.beginPath(); ctx.arc(w / 2, 92, 14, 0, 7); ctx.fill();
-    ctx.fillStyle = '#1a1a18'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    fitText(ctx, DATA.hero.name, `72px ${FS}`, w - 70);
-    ctx.fillText(DATA.hero.name, w / 2, 152);
-    ctx.fillStyle = '#6b6962'; ctx.font = `500 19px ${FD}`;
-    /* word-wrap the tagline so it follows DATA instead of hand-split lines */
-    const lines = [];
-    DATA.hero.tagline.split(' ').forEach((wd) => {
-      const last = lines.length - 1;
-      if (last >= 0 && ctx.measureText(lines[last] + ' ' + wd).width <= w - 90) lines[last] += ' ' + wd;
-      else lines.push(wd);
-    });
-    lines.forEach((ln, i) => ctx.fillText(ln, w / 2, 212 + i * 26));
-  });
+    const cx = 160, cy = h / 2, r = 112;
+    ctx.fillStyle = '#c7572e'; ctx.beginPath(); ctx.arc(cx, cy, r + 9, 0, 7); ctx.fill();
+    ctx.save(); ctx.beginPath(); ctx.arc(cx, cy, r, 0, 7); ctx.clip();
+    if (photo) ctx.drawImage(photo, cx - r, cy - r, r * 2, r * 2);
+    else { ctx.fillStyle = '#f0eeea'; ctx.fillRect(cx - r, cy - r, r * 2, r * 2); }
+    ctx.restore();
+    ctx.fillStyle = '#1a1a18'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
+    fitText(ctx, 'Marcus', `62px ${FS}`, w - 300 - 34);
+    ctx.fillText('Marcus', 300, h / 2 - 34);
+    ctx.fillStyle = '#c7572e';
+    ctx.fillText('Wong', 300, h / 2 + 34);
+  };
+  const flagTex = makeTex(512, 340, (ctx, w, h) => drawFlag(ctx, w, h, null));
+  {
+    const photo = new Image();
+    photo.onload = () => {
+      const c = flagTex.image;
+      drawFlag(c.getContext('2d'), c.width, c.height, photo);
+      flagTex.needsUpdate = true;
+    };
+    photo.src = '/island/headshot.jpg';
+  }
   const flag = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 2.1, 18, 1), texMat(flagTex, { side: THREE.DoubleSide }));
   flag.position.set(1.72, 7.6, 0);
   flag.castShadow = true;

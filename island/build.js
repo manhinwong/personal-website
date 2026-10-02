@@ -84,4 +84,5 @@ for (const re of FORBIDDEN) {
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'index.html'), html);
 fs.copyFileSync(path.join(dir, 'music.m4a'), path.join(outDir, 'music.m4a'));
+fs.copyFileSync(path.join(dir, 'headshot.jpg'), path.join(outDir, 'headshot.jpg'));
 console.log(`✓ built public/island/index.html — ${(html.length / 1024).toFixed(0)} KB, self-contained, public-surface check passed`);
