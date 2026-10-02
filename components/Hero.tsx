@@ -12,7 +12,8 @@ export default function Hero() {
         </h1>
         <p className="text-xl md:text-2xl text-text-secondary leading-relaxed mb-4 max-w-lg">
           I build AI products that close the gap between capability and
-          adoption.
+          adoption, and invest across agent infrastructure and vertical
+          applications.
         </p>
         <p className="text-text-secondary mb-8">
           UC Berkeley &apos;26 · Data Science and Economics

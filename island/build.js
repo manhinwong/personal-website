@@ -7,6 +7,7 @@
 const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
+const vm = require('vm');
 
 const dir = __dirname;
 const outDir = path.join(dir, '..', 'public', 'island');
@@ -34,6 +35,32 @@ inline('<script src="data.js"></script>', 'data.js', (s) => `<script>\n${s}\n</s
 inline('<script src="layout.js"></script>', 'layout.js', (s) => `<script>\n${s}\n</script>`);
 inline('<script src="island.js"></script>', 'island.js', (s) => `<script>\n${s}\n</script>`);
 
+/* The canvas is invisible to search engines and screen readers, so the same
+   content is also emitted as plain HTML, visually hidden with the standard
+   screen-reader-only pattern (not display:none, which crawlers may skip). */
+{
+  const ctx = {};
+  vm.createContext(ctx);
+  vm.runInContext(read('data.js') + ';globalThis.__D = { PROJECTS, ARTICLES, APPROACH, SOCIAL, DATA };', ctx);
+  const { PROJECTS, ARTICLES, APPROACH, SOCIAL, DATA } = ctx.__D;
+  const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  const link = (url, text) => `<a href="${esc(url)}">${esc(text)}</a>`;
+  const summary = `<main id="seo-summary">
+<h1>${esc(DATA.hero.name)}</h1>
+<p>${esc(DATA.hero.tagline)}</p>
+<p>${DATA.stats.map((s) => esc(`${s.label}: ${s.value}`)).join(' · ')}</p>
+<p>${link('/webpage', 'View the classic site')}</p>
+<section><h2>About</h2>${DATA.about.map((p) => `<p>${esc(p)}</p>`).join('')}</section>
+<section><h2>Projects</h2>${PROJECTS.map((p) => `<article><h3>${esc(p.name)}</h3><p>${esc(p.tagline)}</p>${p.description ? `<p>${esc(p.description)}</p>` : ''}<p>Built with ${esc(p.tech.join(', '))}.</p><p>${p.links.map((l) => link(l.url, l.label)).join(' · ')}</p></article>`).join('')}</section>
+<section><h2>Writing</h2>${ARTICLES.map((a) => `<article><h3>${link(a.url, a.title)}</h3><p>${esc(a.date)}</p><p>${esc(a.preview)}</p></article>`).join('')}</section>
+<section><h2>Approach</h2>${APPROACH.map((a) => `<h3>${esc(a.title)}</h3><p>${esc(a.description)}</p>`).join('')}</section>
+<section><h2>Contact</h2><p>${esc(DATA.contact.title)} ${link('mailto:' + DATA.contact.email, DATA.contact.email)}</p><p>${SOCIAL.map((s) => link(s.url, s.label)).join(' · ')}</p></section>
+</main>`;
+  const tag = '<canvas id="game"></canvas>';
+  if (!html.includes(tag)) throw new Error('build: canvas tag not found in dev.html');
+  html = html.replace(tag, () => summary + '\n' + tag);
+}
+
 if (/src="(three\.min|data|layout|island)\.js"|href="style\.css"/.test(html)) {
   console.error('✗ build: something failed to inline — output would not be self-contained');
   process.exit(1);
@@ -56,4 +83,5 @@ for (const re of FORBIDDEN) {
 
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, 'index.html'), html);
+fs.copyFileSync(path.join(dir, 'music.m4a'), path.join(outDir, 'music.m4a'));
 console.log(`✓ built public/island/index.html — ${(html.length / 1024).toFixed(0)} KB, self-contained, public-surface check passed`);

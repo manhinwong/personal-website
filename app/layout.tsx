@@ -21,11 +21,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Marcus Wong — AI Product Builder",
   description:
-    "I build AI products that close the gap between capability and adoption. Investor at Llama Ventures, previously at Anthropic and Doordash.",
+    "I build AI products that close the gap between capability and adoption, and invest across agent infrastructure and vertical applications. Investor at Llama Ventures, previously at Anthropic and Doordash.",
   openGraph: {
     title: "Marcus Wong — AI Product Builder",
     description:
-      "I build AI products that close the gap between capability and adoption.",
+      "I build AI products that close the gap between capability and adoption, and invest across agent infrastructure and vertical applications.",
     type: "website",
   },
 };

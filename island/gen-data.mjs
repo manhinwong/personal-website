@@ -11,7 +11,7 @@ const PROJECTS = projects.map((p) => ({ name: p.title, ...p }));
 const DATA = {
   hero: {
     name: 'Marcus Wong',
-    tagline: 'I build AI products that close the gap between capability and adoption.',
+    tagline: 'I build AI products that close the gap between capability and adoption, and invest across agent infrastructure and vertical applications.',
   },
   stats: [
     { value: "Berkeley '26", label: 'Data Science & Economics', blurb: "UC Berkeley '26, studying Data Science and Economics." },

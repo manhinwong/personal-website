@@ -38,7 +38,7 @@ const muteBtn = $('hud-mute'), devhud = $('devhud');
 
 /* ============================== audio ============================== */
 const AudioSys = (() => {
-  let ctx = null, master = null, muted = false, timer = null;
+  let ctx = null, master = null, muted = false;
   const ensure = () => {
     if (ctx) return;
     ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -55,24 +55,17 @@ const AudioSys = (() => {
     g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
     o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.05);
   };
-  const SCALE = [261.6, 293.7, 329.6, 392.0, 440.0, 523.3, 587.3, 659.3];
-  const MELODY = [0, 2, 4, 3, 5, 4, 2, 1, 0, 2, 3, 4, 7, 5, 4, 2];
-  let step = 0;
+  /* absolute path: the page is served at both / and /island */
+  const track = new Audio('/island/music.m4a');
+  track.loop = true; track.volume = 0.4; track.preload = 'none';
   return {
     startMusic() {
-      ensure(); if (timer) return;
-      timer = setInterval(() => {
-        if (muted) return;
-        const n = MELODY[step % MELODY.length];
-        if (step % 2 === 0) tone(SCALE[n], 0.5, 'triangle', 0.15);
-        if (step % 4 === 0) tone(SCALE[0] / 2, 1.4, 'sine', 0.09);
-        if (step % 8 === 4) tone(SCALE[(n + 2) % 8] * 2, 0.3, 'sine', 0.05);
-        step++;
-      }, 350);
+      ensure();
+      track.play().catch(() => {});
     },
     blip() { ensure(); tone(280 + Math.random() * 260, 0.055, 'square', 0.026, 0, 120); },
     chime() { ensure(); tone(660, 0.14, 'triangle', 0.09); tone(880, 0.18, 'triangle', 0.07, 0.07); },
-    setMuted(m) { muted = m; muteBtn.textContent = loc(m ? UI.soundOff : UI.soundOn); },
+    setMuted(m) { muted = m; track.muted = m; muteBtn.textContent = loc(m ? UI.soundOff : UI.soundOn); },
     get muted() { return muted; },
   };
 })();
@@ -404,11 +397,17 @@ LAYOUT.props.filter((p) => p.kind === 'plinth').forEach((p) => {
     ctx.strokeStyle = '#c7572e'; ctx.lineWidth = 22; ctx.strokeRect(0, 0, w, h);
     ctx.fillStyle = '#c7572e'; ctx.beginPath(); ctx.arc(w / 2, 92, 14, 0, 7); ctx.fill();
     ctx.fillStyle = '#1a1a18'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-    fitText(ctx, DATA.hero.name, `78px ${FS}`, w - 70);
-    ctx.fillText(DATA.hero.name, w / 2, 172);
-    ctx.fillStyle = '#6b6962'; ctx.font = `500 21px ${FD}`;
-    ctx.fillText('I build AI products that close the gap', w / 2, 238);
-    ctx.fillText('between capability and adoption.', w / 2, 268);
+    fitText(ctx, DATA.hero.name, `72px ${FS}`, w - 70);
+    ctx.fillText(DATA.hero.name, w / 2, 152);
+    ctx.fillStyle = '#6b6962'; ctx.font = `500 19px ${FD}`;
+    /* word-wrap the tagline so it follows DATA instead of hand-split lines */
+    const lines = [];
+    DATA.hero.tagline.split(' ').forEach((wd) => {
+      const last = lines.length - 1;
+      if (last >= 0 && ctx.measureText(lines[last] + ' ' + wd).width <= w - 90) lines[last] += ' ' + wd;
+      else lines.push(wd);
+    });
+    lines.forEach((ln, i) => ctx.fillText(ln, w / 2, 212 + i * 26));
   });
   const flag = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 2.1, 18, 1), texMat(flagTex, { side: THREE.DoubleSide }));
   flag.position.set(1.72, 7.6, 0);
